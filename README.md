@@ -1,58 +1,63 @@
-# AI Code Assistant Comparison Study
+# AI Code Assistant Evaluation Framework
 
 ## Overview
 
-This repository contains the experimental environment for a Master's thesis comparing the code generation capabilities of three AI coding assistants:
+This repository contains a **workflow framework** for evaluating AI coding assistants, developed as part of a Master's thesis. The framework provides a structured, reproducible methodology for assessing AI-generated code quality.
 
+The framework was validated by evaluating three AI coding assistants:
 - **Codex** (OpenAI)
 - **Claude Code** (Anthropic)
 - **Gemini** (Google)
 
-The study uses a controlled methodology to evaluate how each tool performs when given identical prompts for a real-world programming task.
+---
+
+## Research Objective
+
+> To develop a systematic framework for evaluating AI coding assistants that ensures consistent, reproducible, and objective assessment of generated code.
 
 ---
 
-## Research Question
+## The Framework
 
-> How do leading AI coding assistants compare in generating functional, secure, and maintainable code when given identical specifications?
+### Four-Stage Workflow
 
----
-
-## The Experiment
-
-### Task
-Each AI tool is asked to generate a **JavaScript authentication module** that:
-- Implements user registration, login, logout, and token management
-- Interfaces with a REST API (mock server provided)
-- Includes client-side validation
-- Handles errors gracefully
-- Comes with a Jest test suite
-
-### Methodology
-1. **Same prompt** - All tools receive identical instructions
-2. **No assistance** - No hints, corrections, or help outside the prompt
-3. **Automated verification** - ESLint + Jest determine pass/fail
-4. **Rubric scoring** - Standardized evaluation criteria (25 points max)
-
-### Workflow Framework
 ```
-Stage 1: Task Specification    → Define what to build
-Stage 2: Prompt Template       → Standardized prompt for all tools
-Stage 3: Triage                → Lint check, security scan
-Stage 4: Verification          → Run tests, evaluate results
+Stage 1: Task Specification    → Define requirements and acceptance criteria
+Stage 2: Prompt Template       → Standardized prompt for consistent input
+Stage 3: Triage                → Automated checks (lint, security scan)
+Stage 4: Verification          → Test execution and rubric scoring
 ```
 
+### Key Principles
+
+1. **Identical Input** - All tools receive the same prompt verbatim
+2. **No Intervention** - No hints, corrections, or assistance outside the framework
+3. **Automated Verification** - ESLint and Jest provide objective pass/fail criteria
+4. **Standardized Scoring** - 25-point rubric across five dimensions
+
+### Evaluation Rubric
+
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Functional Correctness | 5 pts | Does the code meet requirements? |
+| Code Quality | 5 pts | Structure, readability, documentation |
+| Error Handling | 5 pts | Graceful failure, no exceptions thrown |
+| Security | 5 pts | Proper handling of sensitive data |
+| Test Coverage | 5 pts | Completeness of test suite |
+
 ---
 
-## Current Status
+## Framework Validation Results
 
-| Tool | Status | Result |
-|------|--------|--------|
-| Codex | Complete | REJECTED Stage 4 (20/25) |
-| Claude Code | Complete | ACCEPTED (24/25) - 2 iterations |
-| Gemini | Complete | ACCEPTED (25/25) |
+The framework was validated using a JavaScript authentication module task.
 
-**Experiment Complete.** See `CHANGELOG.md` for detailed results and observations.
+| Tool | Result | Score |
+|------|--------|-------|
+| Codex | REJECTED (Stage 4) | 20/25 |
+| Claude Code | ACCEPTED | 24/25 |
+| Gemini | ACCEPTED | 25/25 |
+
+Detailed results are available in `logs/` for each tool.
 
 ---
 
@@ -61,32 +66,32 @@ Stage 4: Verification          → Run tests, evaluate results
 ```
 masters-project/
 │
-├── README.md              ← You are here (high-level overview)
-├── CHANGELOG.md           ← Detailed progress and results
-├── REQUIREMENTS.md        ← Experiment checklists
+├── README.md                 ← Framework overview
+├── REQUIREMENTS.md           ← Evaluation requirements
 │
-├── project/               ← Reference documents
-│   └── Appendix_C_*.pdf   ← API specification
+├── artifacts/                ← Framework artifacts
+│   ├── task-specification.md ← Stage 1: Task definition
+│   ├── prompt-template.md    ← Stage 2: Standardized prompt
+│   └── experiment-log-template.md
 │
-├── artifacts/             ← Experiment inputs
-│   ├── task-specification.md
-│   └── prompt-template.md
+├── project/                  ← Reference documents
+│   └── Appendix_C_*.pdf      ← API specification
 │
-├── mock-api/              ← Test server
-│   └── server.js
+├── mock-api/                 ← Test infrastructure
+│   └── server.js             ← Mock REST API server
 │
-├── src/                   ← AI-generated code
-├── tests/                 ← AI-generated tests
+├── logs/                     ← Evaluation results
+│   ├── codex/
+│   ├── claude-code/
+│   └── gemini/
 │
-└── logs/                  ← Results per tool
-    ├── codex/
-    ├── claude-code/
-    └── gemini/
+├── src/                      ← Generated code (during evaluation)
+└── tests/                    ← Generated tests (during evaluation)
 ```
 
 ---
 
-## Quick Start
+## Using the Framework
 
 ### Prerequisites
 - Node.js 18+
@@ -97,20 +102,27 @@ masters-project/
 npm install
 ```
 
-### Run Mock API
+### Running an Evaluation
+
+1. Clear `src/` and `tests/` directories
+2. Submit the prompt from `artifacts/prompt-template.md` to the AI tool
+3. Save generated code to `src/auth.js` and `tests/auth.test.js`
+4. Run Stage 3 (Triage):
+   ```bash
+   npm run lint
+   ```
+5. Run Stage 4 (Verification):
+   ```bash
+   npm test
+   ```
+6. Document results using `artifacts/experiment-log-template.md`
+7. Score using the 25-point rubric
+
+### Mock API Server
 ```bash
 npm run mock-api
 ```
-
-### Run Tests
-```bash
-npm test
-```
-
-### Run Linter
-```bash
-npm run lint
-```
+Starts the test server at `http://localhost:3000`
 
 ---
 
@@ -118,32 +130,10 @@ npm run lint
 
 | Document | Purpose |
 |----------|---------|
-| `CHANGELOG.md` | Current status, results, next steps |
-| `REQUIREMENTS.md` | Detailed experiment requirements |
-| `artifacts/task-specification.md` | What the AI tools must build |
-| `artifacts/prompt-template.md` | Exact prompt (use verbatim) |
+| `artifacts/task-specification.md` | Defines what the AI must build |
+| `artifacts/prompt-template.md` | Exact prompt used for evaluation |
 | `project/Appendix_C_Mock_API_Contract.pdf` | API specification |
-
----
-
-## Contributing
-
-This is an academic research project. If continuing the experiment:
-
-1. Read `CHANGELOG.md` for current status
-2. Follow the workflow in `REQUIREMENTS.md`
-3. Use the exact prompt from `artifacts/prompt-template.md`
-4. Document results in `logs/{tool}/iteration-N.md`
-5. Update `CHANGELOG.md` when complete
-
----
-
-## Rules
-
-1. **Do NOT modify the prompt** - All tools must receive identical input
-2. **Do NOT help the AI** - No hints or corrections outside the framework
-3. **Do NOT hide failures** - Failures are valuable data
-4. **Document everything** - Raw outputs, errors, observations
+| `logs/{tool}/iteration-*.md` | Evaluation results per tool |
 
 ---
 
