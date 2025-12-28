@@ -22,10 +22,9 @@ This is the **experimental execution environment** for a Master's thesis compari
 
 ### 1. Understand the Task
 Read these documents in order:
-1. `project/part-6.pdf` - Why this experiment exists and the methodology
-2. `project/Appendix_C_Mock_API_Contract.pdf` - The API specification being implemented
-3. `artifacts/task-specification.md` - What the AI tools are asked to build
-4. `artifacts/prompt-template.md` - The exact prompt used for all tools
+1. `project/Appendix_C_Mock_API_Contract.pdf` - The API specification being implemented
+2. `artifacts/task-specification.md` - What the AI tools are asked to build
+3. `artifacts/prompt-template.md` - The exact prompt used for all tools
 
 ### 2. Current State
 - **Environment:** Fully configured (Jest, ESLint, Mock API)
@@ -52,11 +51,8 @@ masters-project/
 ├── package.json            ← Node.js config (Jest, ESLint, Express)
 ├── eslint.config.js        ← ESLint v9 configuration
 │
-├── project/                ← Source documents (PDFs)
-│   ├── part-6.pdf          ← Section 6 methodology guide
-│   ├── Appendix_C_Mock_API_Contract.pdf  ← API specification
-│   ├── Paper.pdf           ← Full thesis paper
-│   └── TOC.pdf             ← Table of contents
+├── project/                ← Reference documents
+│   └── Appendix_C_Mock_API_Contract.pdf  ← API specification
 │
 ├── artifacts/              ← Experiment artifacts
 │   ├── task-specification.md    ← What to build (Stage 1)
@@ -205,16 +201,16 @@ masters-project/
 
 | Document | Location | Purpose |
 |----------|----------|---------|
-| Part 6 Guide | `project/part-6.pdf` | Explains WHY we're doing this experiment |
 | API Contract | `project/Appendix_C_Mock_API_Contract.pdf` | Defines the REST API to implement |
 | Task Spec | `artifacts/task-specification.md` | Detailed requirements for AI tools |
 | Prompt | `artifacts/prompt-template.md` | EXACT prompt to use (do not modify) |
 | Codex Results | `logs/codex/iteration-1.md` | Codex experiment findings |
 | Claude Results | `logs/claude-code/` | Claude experiment findings |
+| Gemini Results | `logs/gemini/iteration-1.md` | Gemini experiment findings |
 
 ---
 
-## Rules of Engagement (from Part 6)
+## Rules of Engagement
 
 1. **Do NOT** manually optimize code to "make it work"
 2. **Do NOT** fix issues outside the framework
@@ -305,4 +301,4 @@ masters-project/
 
 ## Contact / Questions
 
-This experiment is part of a Master's thesis. If you have questions about the methodology, refer to `project/part-6.pdf` or the main paper at `project/Paper.pdf`.
+This experiment is part of a Master's thesis comparing AI coding assistants.

@@ -65,8 +65,7 @@ masters-project/
 ├── CHANGELOG.md           ← Detailed progress and results
 ├── REQUIREMENTS.md        ← Experiment checklists
 │
-├── project/               ← Thesis documents
-│   ├── part-6.pdf         ← Methodology guide
+├── project/               ← Reference documents
 │   └── Appendix_C_*.pdf   ← API specification
 │
 ├── artifacts/             ← Experiment inputs
@@ -123,7 +122,6 @@ npm run lint
 | `REQUIREMENTS.md` | Detailed experiment requirements |
 | `artifacts/task-specification.md` | What the AI tools must build |
 | `artifacts/prompt-template.md` | Exact prompt (use verbatim) |
-| `project/part-6.pdf` | Why this experiment exists |
 | `project/Appendix_C_Mock_API_Contract.pdf` | API specification |
 
 ---
