@@ -1,6 +1,6 @@
 # Gemini Experiment Instructions
 
-> **Note:** This instruction document was created with AI assistance to ensure consistent experimental protocol across all three tools being evaluated.
+> **Note:** This document was created to ensure consistent experimental protocol across all three tools being evaluated.
 
 **Purpose:** Run the Gemini portion of an AI coding assistant comparison study.
 
